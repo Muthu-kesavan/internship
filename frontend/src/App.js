@@ -13,7 +13,9 @@ import Mobile from './components/Mobile/Mobile';
 import MobileHome from './pages/MobileHome/MobileHome';
 const Layout = () => {
   const isDesktop = useMediaQuery({ minWidth: 1024 });
-
+  // Here Task 8 is done where we need to render different components for Mobile and Desktop
+ // here it is performed using a mediaQuery to find the size of screen then rendering.
+ // also created a two new Components for the MobileHome and DesktopHome components....
   return (
     <div>
       <Navbar />

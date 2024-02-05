@@ -43,15 +43,17 @@ nav ul li a .arrow {
   position: absolute;
   top: 50%;
   right: 10px;
-  transform: translateY(-50%) rotate(0deg);
+  transform: translateY(-50%) rotate(0deg);/*here the arrow is kept is it's position before hover*/
   transition: transform 0.3s ease;
 }
 
 nav ul li.open a .arrow {
+  /*Once hover is done the arrow is rotated to 180deg using transform*/
   transform: translateY(-50%) rotate(180deg);
 }
 
 nav ul li:not(:hover) a .arrow {
+  /*when not overing it goes back to its previous original position */
   transform: translateY(-50%) rotate(0deg);
 }
 

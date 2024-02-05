@@ -9,13 +9,15 @@ Chart.register(CategoryScale);
 
 const BarChart = () => {
   const [data, setData] = useState([]);
-
+// here the task 3 is done where we need to Load API data in a component only once 
+// this is done here by using useEffect hook with the empty dependency array....
+// All the Components on this application follows the same approach.....
   useEffect(() => {
     getData();
   }, []);
 
   const getData = () => {
-    axios
+    axios // link own link of the backend to get the data from our MongoDB .... 
       .get("https://connect1-5xyo.onrender.com/api/data/getdata")
       .then((res) => {
         setData(res.data.slice(0, 30)); 

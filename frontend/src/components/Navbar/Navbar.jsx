@@ -3,7 +3,10 @@ import {Link} from "react-router-dom";
 import '../Navbar/Navbar.css';
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  //Here the task 7- show or hide the component depending on the state is done....
+  // As we use this navbar to appear only if the toggle buttton is mouseOvered....
+  //Task 6 - to change arrow direction in a drop down window when toggle happens
+  // it is performed on the file Navbar.css
   const handleToggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
