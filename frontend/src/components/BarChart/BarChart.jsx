@@ -30,13 +30,13 @@ const BarChart = () => {
     labels: labels.slice(0, 30),
     datasets: [
       {
-        label: "Based on intensity",
+        label: "Based on intensity of Topic",
         backgroundColor: "#22c55e",
         borderColor: "rgba(75,192,192,1)",
         borderWidth: 1,
         hoverBackgroundColor: "#4ade80",
         hoverBorderColor: "rgba(75,192,192,1)",
-        data: data.map((el) => el.intensity).slice(0, 30), // Only take the first 20 data points
+        data: data.map((el) => el.intensity).slice(0, 30), 
       },
     ],
   };
@@ -71,7 +71,7 @@ const BarChart = () => {
         <Bars
   height="80"
   width="80"
-  color="#4fa94d"
+  color="#333333"
   ariaLabel="bars-loading"
   wrapperStyle={{}}
   wrapperClass=""
