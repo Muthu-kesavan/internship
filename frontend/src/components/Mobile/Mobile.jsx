@@ -3,7 +3,7 @@ import MobileHome from '../../pages/MobileHome/MobileHome'
 import BarChart from '../BarChart/BarChart'
 import PieChart from '../PieChart/PieChart'
 import ScatterPlot from '../ScatterPlot/ScatterPlot'
-import BubbleChart from '../BubbleChart/BubbleChart'
+import LineChart from '../LineChart/LineChart'
 const Mobile = () => {
   return (
     <div>
@@ -11,7 +11,7 @@ const Mobile = () => {
       <BarChart />
       <PieChart />
       <ScatterPlot />
-      <BubbleChart />
+      <LineChart />
     </div>
    
   )

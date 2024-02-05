@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, {useEffect, useState, useRef} from 'react'
 import axios from "axios";
-import Chart from 'chart.js/auto';
-import { Bars } from "react-loader-spinner";
+import {Chart} from 'chart.js';
+import { Bars } from 'react-loader-spinner';
 import "../Loader/Loader.css";
-const ScatterPlot = () => {
+const LineChart = () => {
+ 
   const [employeeData, setEmployeeData] = useState([]);
   const chartRef = useRef(null);
 
@@ -21,41 +22,39 @@ const ScatterPlot = () => {
   };
 
   useEffect(() => {
-    renderScatterPlot();
+    renderLineChart();
 
     return () => {
-      destroyScatterPlot();
+      destroyLineChart();
     };
   }, [employeeData]);
 
-  const renderScatterPlot = () => {
-    const ctx = document.getElementById('scatter-plot');
+  const renderLineChart = () => {
+    const ctx = document.getElementById('line-chart');
     if (ctx) {
-      destroyScatterPlot();
+      destroyLineChart();
 
-      const scatterChart = new Chart(ctx, {
-        type: 'scatter',
+      const lineChart = new Chart(ctx, {
+        type: 'line',
         data: {
+          labels: employeeData.map((employee) => employee.employee_name),
           datasets: [
             {
-              label: 'Employee Age vs Salary',
-              data: employeeData.map((employee) => ({
-                x: employee.employee_age,
-                y: employee.employee_salary,
-                r: 5, 
-              })),
-              backgroundColor: '#e11d48',
+              label: 'Employee Salary Trend',
+              data: employeeData.map((employee) => employee.employee_salary),
+              borderColor: '#e11d48',
+              fill: false,
             },
           ],
         },
         options: {
           scales: {
             x: {
-              type: 'linear',
+              type: 'category',
               position: 'bottom',
               title: {
                 display: true,
-                text: 'Employee Age',
+                text: 'Employee Name',
               },
             },
             y: {
@@ -70,11 +69,11 @@ const ScatterPlot = () => {
         },
       });
 
-      chartRef.current = scatterChart;
+      chartRef.current = lineChart;
     }
   };
 
-  const destroyScatterPlot = () => {
+  const destroyLineChart = () => {
     if (chartRef.current) {
       chartRef.current.destroy();
     }
@@ -83,14 +82,14 @@ const ScatterPlot = () => {
   return (
     <div style={{ width: '70%', margin: 'auto', marginTop: '60px' }}>
       {employeeData.length > 0 ? (
-        <canvas id="scatter-plot"></canvas>
+        <canvas id="line-chart"></canvas>
       ) : (
-        <div className="loading-spinner-container">
+          <div className="loading-spinner-container">
           <Bars height={80} width={80} color="#333333" ariaLabel="loading" visible={true} />
           </div> 
       )}
     </div>
   );
 };
-  
-export default ScatterPlot;
+
+export default LineChart

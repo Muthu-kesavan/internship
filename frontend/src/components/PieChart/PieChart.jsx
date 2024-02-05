@@ -4,30 +4,29 @@ import { Pie } from "react-chartjs-2";
 import { Bars } from "react-loader-spinner";
 import "../Loader/Loader.css";
 const PieChart = () => {
-  const [data, setData] = useState([]);
+  const [employeeData, setEmployeeData] = useState([]);
 
   useEffect(() => {
-    getData();
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://dummy.restapiexample.com/api/v1/employees');
+        setEmployeeData(response.data.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
-  const getData = () => {
-    axios
-      .get("https://connect1-5xyo.onrender.com/api/data/getdata")
-      .then((res) => {
-        setData(res.data.slice(0, 52));
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const uniqueTopics = Array.from(new Set(data.map((entry) => entry.topic)));
+  const employeeNames = employeeData.map(employee => employee.employee_name);
+  const employeeAges = employeeData.map(employee => employee.employee_age);
 
   const pieChartData = {
-    labels: uniqueTopics,
+    labels: employeeNames,
     datasets: [
       {
-        data: uniqueTopics.map((topic) =>
-          data.filter((entry) => entry.topic === topic).length
-        ),
+        data: employeeAges,
         backgroundColor: [
           '#A569BD',
           '#DFFF00',
@@ -47,37 +46,31 @@ const PieChart = () => {
           '#1d2341',
           '#66ff66',
           '#ff3333',
+          '#94b8b8',
+          '#df9f9f',
+          '#2d5986',
+          '#ffb3ec',
+          '#0000cc',
+          '#ffbf00',
+          '#8585ad',
+          '#79d279',
         ],
+        
       },
     ],
   };
-  const center = {
-    textAlign: 'center',
-
-  }
 
   return (
-    <div style={{ width: "50%", margin: "auto", marginTop: "60px" }}>
-      <h3 style={center}>Based On Most Speaked Topic</h3>
-      {data.length > 0 ? (
-        <Pie
-          data={pieChartData}
-          options={{
-            plugins: {
-              legend: {
-                display: true,
-                position: "right", 
-              },
-            },
-          }}
-        />
-      ) : (
+    <div style={{width:"50%", margin: "auto", marginTop:"60px"}}>
+      <h2>Employee Age Pie Chart</h2>
+      {employeeData.length > 0 ? (
+        <Pie data={pieChartData} />
+      ) : ( 
         <div className="loading-spinner-container">
-        <Bars height={80} width={80} color="#333333" ariaLabel="loading" visible={true} />
-      </div>
-      )}
+          <Bars height={80} width={80} color="#333333" ariaLabel="loading" visible={true} />
+          </div> 
+      )}; 
     </div>
   );
 };
-
 export default PieChart;

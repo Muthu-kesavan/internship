@@ -22,7 +22,7 @@ const Navbar = () => {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/bar-chart">Bar-Chart</Link></li>
             <li><Link to="/pie-chart">Pie-Chart</Link></li>
-            <li><Link to="/bubble-chart">Bubble-Chart</Link></li>
+            <li><Link to="/line-chart">Line-Chart</Link></li>
             <li><Link to="/scatter-plot">Scatter-Plot</Link></li>
             <li><a href='https://www.linkedin.com/in/muthu-kesavan-s-95425821b/'
                    target="_blank"

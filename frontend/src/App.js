@@ -6,11 +6,12 @@ import Navbar from './components/Navbar/Navbar';
 import Desktop from './components/Desktop/Desktop';
 import BarChart from './pages/barChart/barChart';
 import PieChart from './pages/pieChart/pieChart';
-import BubbleChart from './pages/bubbleChart/bubbleChart';
+import LineChart from './pages/lineChart/lineChart';
 import ScatterPlot from './pages/scatterPlot/scatterPlot';
 import DeskTopHome from './pages/DesktopHome/DesktopHome';
 import Mobile from './components/Mobile/Mobile';
 import MobileHome from './pages/MobileHome/MobileHome';
+
 const Layout = () => {
   const isDesktop = useMediaQuery({ minWidth: 1024 });
   // Here Task 8 is done where we need to render different components for Mobile and Desktop
@@ -48,8 +49,8 @@ const mobileRouter = createBrowserRouter([
         element: <PieChart />
       },
       {
-        path:'/bubble-chart',
-        element: <BubbleChart />
+        path:'/line-chart',
+        element: <LineChart />
       },
       {
         path:"/scatter-plot",
@@ -77,8 +78,8 @@ const deskTopRouter = createBrowserRouter([
         element: <PieChart />
       },
       {
-        path:'/bubble-chart',
-        element: <BubbleChart />
+        path:'/line-chart',
+        element: <LineChart />
       },
       {
         path:"/scatter-plot",

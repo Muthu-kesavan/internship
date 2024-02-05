@@ -3,7 +3,7 @@ import DesktopHome from '../../pages/DesktopHome/DesktopHome'
 import BarChart from '../BarChart/BarChart'
 import PieChart from '../PieChart/PieChart'
 import ScatterPlot from '../ScatterPlot/ScatterPlot'
-import BubbleChart from '../BubbleChart/BubbleChart'
+import LineChart from '../LineChart/LineChart'
 const Desktop = () => {
   return (
     <div>
@@ -11,7 +11,7 @@ const Desktop = () => {
       <BarChart />
       <PieChart />
       <ScatterPlot />
-      <BubbleChart />
+      <LineChart />
     </div>
   )
 }

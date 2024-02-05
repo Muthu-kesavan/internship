@@ -8,78 +8,48 @@ import { CategoryScale } from 'chart.js';
 Chart.register(CategoryScale);
 
 const BarChart = () => {
-  const [data, setData] = useState([]);
-// here the task 3 is done where we need to Load API data in a component only once 
-// this is done here by using useEffect hook with the empty dependency array....
-// All the Components on this application follows the same approach.....
+  const [employeeData, setEmployeeData] = useState([]);
+
   useEffect(() => {
-    getData();
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://dummy.restapiexample.com/api/v1/employees');
+        setEmployeeData(response.data.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
-  const getData = () => {
-    axios // link own link of the backend to get the data from our MongoDB .... 
-      .get("https://connect1-5xyo.onrender.com/api/data/getdata")
-      .then((res) => {
-        setData(res.data.slice(0, 30)); 
-        console.log("Fetched Data:", res.data);
-      })
-      .catch((err) => console.log("Error fetching data:", err));
-  };
-
-  const labels = data.map((el) => el.source);
+  const employeeNames = employeeData.map(employee => employee.employee_name);
+  const employeeSalaries = employeeData.map(employee => employee.employee_salary);
 
   const barChartData = {
-    labels: labels.slice(0, 30),
+    labels: employeeNames,
     datasets: [
       {
-        label: "Based on intensity of Topic",
-        backgroundColor: "#22c55e",
-        borderColor: "rgba(75,192,192,1)",
+        label: 'Employee Salary',
+        backgroundColor: '#22c55e',
+        borderColor: 'rgba(75,192,192,1)',
         borderWidth: 1,
-        hoverBackgroundColor: "#4ade80",
-        hoverBorderColor: "rgba(75,192,192,1)",
-        data: data.map((el) => el.intensity).slice(0, 30), 
+        hoverBackgroundColor: '#4ade80',
+        hoverBorderColor: 'rgba(75,192,192,1)',
+        data: employeeSalaries,
       },
     ],
   };
 
-  const options = {
-    scales: {
-      x: {
-        grid: {
-          display: false,
-        },
-      },
-      y: {
-        grid: {
-          color: "rgba(0, 0, 0, 0.1)",
-        },
-      },
-    },
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-      },
-    },
-  };
-
   return (
-    <div style={{ width: "70%", margin: "auto",  marginTop: "60px"  }} >
-      {data.length > 0 ? (
-        <Bar data={barChartData} options={options} />
+    <div style={{width:"70%", margin:"auto", marginTop:"60px"}}>
+      <h2>Employee Salary Bar Chart</h2>
+      {employeeData.length > 0 ? (
+            <Bar data={barChartData} />
       ) : (
         <div className="loading-spinner-container">
-        <Bars
-  height="80"
-  width="80"
-  color="#333333"
-  ariaLabel="bars-loading"
-  wrapperStyle={{}}
-  wrapperClass=""
-  visible={true}
-  />
-      </div>
+          <Bars height={80} width={80} color="#333333" ariaLabel="loading" visible={true} />
+          </div> 
       )}
     </div>
   );
