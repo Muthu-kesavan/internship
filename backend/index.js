@@ -7,7 +7,7 @@ const app = express();
 dotenv.config();
 
 const corsOptions = {
-  origin:"https://https://settylapp.netlify.app",
+  origin:"https://settylapp.netlify.app",
 }
 app.use(cors(corsOptions));
  app.use(express.json());
