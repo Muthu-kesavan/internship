@@ -1,23 +1,14 @@
-import logo from './logo.svg';
+import Grid from '../src/component/Grid/Grid';
+import AddRow from '../src/component/AddRow/AddRow';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Redux State Management React Application</h1>
+      <Grid />
+      <AddRow />
+      
     </div>
   );
 }
