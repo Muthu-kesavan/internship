@@ -24,8 +24,10 @@ nav ul li a {
   color: #333333;
   display: block;
   padding: 0px 40px;
+  font-weight: bold;
+  font-size: large;
   text-decoration: none;
-  float: center;
+  float: left;
   height: 60px;
   line-height: 60px;
   position: relative;
@@ -47,6 +49,10 @@ nav ul li a .arrow {
 
 nav ul li.open a .arrow {
   transform: translateY(-50%) rotate(180deg);
+}
+
+nav ul li:not(:hover) a .arrow {
+  transform: translateY(-50%) rotate(0deg);
 }
 
 nav ul li:hover {
@@ -71,4 +77,6 @@ nav ul ul {
   top: 60px;
   left: 0px;
 }
+
+
 
