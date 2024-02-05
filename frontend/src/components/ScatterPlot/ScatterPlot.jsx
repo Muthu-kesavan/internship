@@ -13,7 +13,7 @@ const ScatterPlot = () => {
 
   const getData = () => {
     axios
-      .get("http://localhost:8000/api/data/getdata")
+      .get("https://connect1-5xyo.onrender.com/api/data/getdata")
       .then((res) => {
         setData(res.data.slice(0, 80));
       })
