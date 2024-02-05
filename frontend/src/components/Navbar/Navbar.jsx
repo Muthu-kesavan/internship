@@ -28,10 +28,10 @@ const Navbar = () => {
                    target="_blank"
                    rel="noopener noreferrer"> 
                    Profile</a></li>
-            <li><a href='https://github.com/Muthu-kesavan/internship'  
+            <li><a href='https://redux-state-grid.netlify.app/'  
                   target="_blank"
                   rel="noopener noreferrer">
-                  Source Code</a></li>
+                  React redux-state-grid</a></li>
           </ul>
         </li>
       </ul>
