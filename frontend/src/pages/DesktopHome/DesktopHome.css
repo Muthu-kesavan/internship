@@ -1,0 +1,11 @@
+.deskhome {
+  text-align: center;
+  text-decoration: solid;
+  font-weight: bolder;
+  font-size: larger;
+}
+.deskhome img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

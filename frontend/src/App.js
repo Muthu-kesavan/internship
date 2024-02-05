@@ -1,28 +1,41 @@
+import React from 'react';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import BarChart from './components/BarChart/BarChart';
-import PieChart from './components/PieChart/PieChart';
-import BubbleChart from './components/BubbleChart/BubbleChart';
-import Home from './pages/Home/Home';
+import Desktop from './components/Desktop/Desktop';
+import BarChart from './pages/barChart/barChart';
+import PieChart from './pages/pieChart/pieChart';
+import BubbleChart from './pages/bubbleChart/bubbleChart';
+import ScatterPlot from './pages/scatterPlot/scatterPlot';
+import DeskTopHome from './pages/DesktopHome/DesktopHome';
+import Mobile from './components/Mobile/Mobile';
+import MobileHome from './pages/MobileHome/MobileHome';
+const Layout = () => {
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
 
-const Layout=()=> {
   return (
     <div>
       <Navbar />
-      <Outlet></Outlet>
+      <Outlet>
+        {isDesktop ? (
+            <Desktop />
+        ) : (
+          <Mobile />
+        )}
+      </Outlet>
     </div>
   );
-}
+};
 
-const router = createBrowserRouter([
+const mobileRouter = createBrowserRouter([
   {
     path:"/",
     element: <Layout />,
     children:[
       {
         path:'/',
-        element: <Home />
+        element: <MobileHome />
       },
       {
         path:'/bar-chart/',
@@ -35,15 +48,51 @@ const router = createBrowserRouter([
       {
         path:'/bubble-chart',
         element: <BubbleChart />
+      },
+      {
+        path:"/scatter-plot",
+        element: <ScatterPlot />
       }
     ],
   },
+
 ])
+const deskTopRouter = createBrowserRouter([
+  {
+    path:"/",
+    element: <Layout />,
+    children:[
+      {
+        path:'/',
+        element: <DeskTopHome />
+      },
+      {
+        path:'/bar-chart/',
+        element: <BarChart />
+      },
+      {
+        path:'/pie-chart/',
+        element: <PieChart />
+      },
+      {
+        path:'/bubble-chart',
+        element: <BubbleChart />
+      },
+      {
+        path:"/scatter-plot",
+        element: <ScatterPlot />
+      }
+    ],
+  },
+]);
+
 function App() {
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
   return (
     <div>
-      <RouterProvider router={router}></RouterProvider>
-    </div>
+    <RouterProvider router={isDesktop ? deskTopRouter : mobileRouter} />
+  </div>
+    
   );
 }
 

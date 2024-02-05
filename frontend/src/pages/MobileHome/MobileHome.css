@@ -1,0 +1,11 @@
+.mobilehome {
+  text-align: center;
+  text-decoration: solid;
+  font-weight: bolder;
+  font-size: larger;
+}
+.mobilehome img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
